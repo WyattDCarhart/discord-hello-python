@@ -19,25 +19,8 @@ bot = commands.Bot(command_prefix=command_prefix, intents=intents)
 async def on_ready():
     print(f'We have logged in as {bot.user}')
 
-# On Message
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
-    if message.content.startswith(command_prefix):
-        contents = message.content[len(command_prefix):].split()
-        command = contents[0]
-        args = contents[1:]
-
-        # !hello
-        if command == 'hello':
-            await message.channel.send('Hello!')
-
-        # default
-        else:
-            await message.channel.send(f'The command \'{command}\' is not recognized.')
-
-    await bot.process_commands(message)
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hello {ctx.author.mention}!')
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
