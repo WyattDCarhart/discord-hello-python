@@ -19,8 +19,14 @@ bot = commands.Bot(command_prefix=command_prefix, intents=intents)
 async def on_ready():
     print(f'We have logged in as {bot.user}')
 
+# HELLO
 @bot.command()
 async def hello(ctx):
     await ctx.send(f'Hello {ctx.author.mention}!')
+
+# REMIND
+@bot.command()
+async def remind(ctx):
+    ...
 
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
